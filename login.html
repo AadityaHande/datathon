@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Login – HireMe.ai</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="assets/css/main.css" />
+  <link rel="icon" href="HireMeLogo.png" type="image/png">
+</head>
+<body class="bg-gray-100 flex items-center justify-center h-screen">
+  <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
+    <h2 class="text-2xl font-bold text-center mb-6 text-indigo-700">Welcome Back 👋</h2>
+
+    <!-- Email/Password Login -->
+    <form id="loginForm" class="space-y-4">
+      <input type="email" id="email" placeholder="Email" required class="form-input w-full" />
+      <input type="password" id="password" placeholder="Password" required class="form-input w-full" />
+      <button type="submit" class="btn primary w-full">Login</button>
+    </form>
+
+    <div class="my-4 text-center text-sm text-gray-500">OR</div>
+
+    <button onclick="googleLogin()" class="btn accent w-full">Login with Google</button>
+
+    <p class="text-center text-sm mt-4 text-gray-600">
+      Don't have an account? <a href="signup.html" class="text-indigo-600 font-medium">Sign up</a><br>
+      <a href="index.html" class="text-gray-500 underline mt-1 inline-block">← Back to Home</a>
+    </p>
+  </div>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js";
+    import {
+      getAuth,
+      signInWithEmailAndPassword,
+      signInWithPopup,
+      GoogleAuthProvider
+    } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyB_aMaZeen52w85MnL7t2bTK-YIuyLKsA0",
+      authDomain: "hiremeai-343dc.firebaseapp.com",
+      projectId: "hiremeai-343dc"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    document.getElementById("loginForm").addEventListener("submit", (e) => {
+      e.preventDefault();
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+
+      signInWithEmailAndPassword(auth, email, password)
+        .then(() => {
+          window.location.href = "selector.html";
+        })
+        .catch((err) => {
+          alert("Login failed: " + err.message);
+        });
+    });
+
+    window.googleLogin = function () {
+      const provider = new GoogleAuthProvider();
+      signInWithPopup(auth, provider)
+        .then(() => {
+          window.location.href = "selector.html";
+        })
+        .catch((err) => {
+          alert("Google login error: " + err.message);
+        });
+    };
+  </script>
+</body>
+</html>
