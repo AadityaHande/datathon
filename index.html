@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>HireMe.ai – Redirecting...</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="refresh" content="2; url=homepage.html" />
+  <style>
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      background: #f8fafc;
+      margin: 0;
+      font-family: 'Manrope', sans-serif;
+    }
+    .splash {
+      text-align: center;
+    }
+    .splash img {
+      width: 120px;
+      animation: pulse 1.5s ease-in-out infinite;
+    }
+    .splash h1 {
+      font-size: 1.5rem;
+      color: #4f46e5;
+      margin-top: 1rem;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); opacity: 0.8; }
+      50% { transform: scale(1.05); opacity: 1; }
+      100% { transform: scale(1); opacity: 0.8; }
+    }
+  </style>
+</head>
+<body>
+  <div class="splash">
+    <img src="assets/images/HireMeLogo.png" alt="HireMe.ai logo" />
+    <h1>Loading HireMe.ai...</h1>
+  </div>
+
+  <!-- Fallback in case meta redirect fails -->
+  <script>
+    setTimeout(() => {
+      window.location.href = "homepage.html";
+    }, 2000);
+  </script>
+</body>
+</html>
